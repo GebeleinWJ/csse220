@@ -41,7 +41,10 @@ public class HW0 {
 	 */
 	public static double addFraction(int num1, int den1, int num2, int den2) {
 		// TODO: Implement this method
-		throw new UnsupportedOperationException("Not yet implemented.");
+		int I1=num1/den1;
+		int I2=num2/den2;
+		return I1+I2;
+		// TODO: STATE MY REASONING
 	}
 	
 	/**
