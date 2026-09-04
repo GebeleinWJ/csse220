@@ -26,6 +26,9 @@ public class JavaExamples {
 		guessCubeRoot(27,2.5);
         guessCubeRoot(27, 3.3);
         guessCubeRoot(27, 3);
+		myGuessCubeRoot(27,2);
+		myGuessCubeRoot(27,4);
+		myGuessCubeRoot(27,3);
 	}
 	
 	/**
@@ -88,6 +91,26 @@ public class JavaExamples {
         } else {
             System.out.println("Perfect");
         }
+	}
+	public static void myGuessCubeRoot(double number, double guess) {
+		double guessCubed = guess * guess * guess;
+		double difference = number-guessCubed;
+		if (difference>0)
+		{
+			double numRoot=Math.cbrt(number);
+			double out = numRoot-guess;
+			System.out.println("The target was "+difference+" higher than your guess cubed, and the target's cube root was "+out+" higher than your guess.");
+		}
+		else if (difference<0)
+		{
+			double numRoot=Math.cbrt(number);
+			double out = numRoot-guess;
+			System.out.println("The target was "+ -difference +" lower than your guess cubed, and the target's cube root was "+ -out +" lower than your guess.");
+		}
+		else
+		{
+			System.out.println("Got it, genius.");
+		}
 	}
 	
 }
