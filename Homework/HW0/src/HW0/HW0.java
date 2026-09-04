@@ -40,11 +40,12 @@ public class HW0 {
 	 * addFraction(1,2,1,4) returns 0.75
 	 */
 	public static double addFraction(int num1, int den1, int num2, int den2) {
-		// TODO: Implement this method
-		int I1=num1/den1;
-		int I2=num2/den2;
+
+		double I1=(num1+0.0)/den1;
+		double I2=(num2+0.0)/den2;
 		return I1+I2;
-		// TODO: STATE MY REASONING
+		//Reasoning\\ The only thing that makes this different from a 5th grade math problem was the need
+		//Continued\\ to add a 0.0 to each numerator to make the function a double division instead of integer division.
 	}
 	
 	/**
@@ -61,8 +62,15 @@ public class HW0 {
 	 * @return true if x*y is a multiple of four, false otherwise
 	 */
 	public static boolean isProductAMultipleOfFour(int x, int y) {
-		// TODO: Implement this method
-		throw new UnsupportedOperationException("Not yet implemented.");
+		int z = x*y;
+		if (z%4==0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		//Reasoning\\ This just needed to use the built-in remainder function. If x%y = 0, x is divisble by y.
 	}
-
 } // end class HW0
