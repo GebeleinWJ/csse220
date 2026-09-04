@@ -16,23 +16,39 @@ public class ConvertToJava {
     }
 
     // TODO: Add your converted function here. 
-
-    // === EXAMPLE ===
-    // Python version: 
-    // def celsiusToFahrenheit(celsius: float) -> None:
-    //   fahr = celsius * 9.0 / 5 + 32
-    //   print("{0:.1f} C = {1:.1f} F".format(celsius, fahr))
-    // 
-    // Java version: 
-    // /**
-    //  * Convert Celsius to Fahrenheit and print result
-    //  * @param celsius - temperature in Celsius
-    //  */
-    // public static void myFunction(double celsius) {
-    //     double fahr; // temp in fahrenheit
-    //     String str;
-    //     fahr = celsius * 9.0 / 5 + 32;
-    //     str = String.format("%.1f C = %.1f F\n", celsius, fahr);
-    //     System.out.println(str);
+//---PYTHON VERSION---\\
+//    def run_test_sum_abs_of_all():
+//            """Tests the   sum_abs_of_all   function."""
+//    print()
+//    print("--------------------------------------------------")
+//    print("Testing the   sum_abs_of_all   function:")
+//    print("--------------------------------------------------")
+//
+//    total1 = sum_abs_of_all([8, 13, 7, 5])
+//    print("Returned, expected:", total1, 33)
+//
+//    total2 = sum_abs_of_all([10, -30, -20])
+//    print("Returned, expected:", total2, 60)
+//
+//    total3 = sum_abs_of_all([])
+//    print("Returned, expected:", total3, 0)
+//---JAVA VERSION---\\
+//    public static void runTestSumAbsOfAll() {
+//        // Tests the sumAbsOfAll function.
+//
+//        System.out.println();
+//        System.out.println("--------------------------------------------------");
+//        System.out.println("Testing the sumAbsOfAll function:");
+//        System.out.println("--------------------------------------------------");
+//
+//        int total1 = sumAbsOfAll(new int[]{8, 13, 7, 5});
+//        System.out.println("Returned, expected: " + total1 + ", " + 33);
+//
+//        int total2 = sumAbsOfAll(new int[]{10, -30, -20});
+//        System.out.println("Returned, expected: " + total2 + ", " + 60);
+//
+//        int total3 = sumAbsOfAll(new int[]{});
+//        System.out.println("Returned, expected: " + total3 + ", " + 0);
+//    }
     // } 
 }
