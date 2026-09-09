@@ -43,7 +43,8 @@ public class Two2DArrayProblemsTest {
 	}
 
 	/**
-	 * Tests the {@link Two2DArrayProblems#numbersToDigitArrays(String[])} method.
+	 * Tests the {@link Two2DArrayProblems#
+	 * numbersToDigitArrays(String[])} method.
 	 *
 	 */
 	@Test
