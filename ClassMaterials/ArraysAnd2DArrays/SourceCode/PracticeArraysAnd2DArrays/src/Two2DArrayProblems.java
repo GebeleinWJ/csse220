@@ -1,8 +1,9 @@
 
 /**
- * TODO Put here a description of what this class does.
- *
- * @author TODO <Add your name here>.
+ * This class can determine the number of 4s in a 2d array, the distance between two elements on a 2d array,
+ * seperate an int array with multidigit variables into a 2d array, where each sub array is each digit,
+ * and can determine if a 2d array is symmetric.
+ * @author Will Gebelein
  *         Created Dec 15, 2013.
  */
 public class Two2DArrayProblems {
@@ -21,8 +22,17 @@ public class Two2DArrayProblems {
 	 * @return the number of times 4 occurs in the array.
 	 */
 	public static int count4s(int[][] data) {
-
-		return 0;
+		int total = 0;
+		for (int i = 0; i < data.length; i++) {
+			for (int j = 0; j < data[i].length; j++)
+			{
+				if (data[i][j]==4)
+				{
+					total++;
+				}
+			}
+		}
+		return total;
 	}
 	
 	
@@ -44,8 +54,16 @@ public class Two2DArrayProblems {
 	 * @return true if the array is symmetric, false otherwise.
 	 */
 	public static boolean isSymmetric(int[][] input) {
-		
-		return false;
+		for (int i = 0; i < input.length; i++) {
+			for (int j = 0; j < input[i].length; j++)
+			{
+				if (input[i][j]!=input[j][i])
+				{
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	/**
@@ -66,8 +84,26 @@ public class Two2DArrayProblems {
 	 *  
 	 */
 	public static int[][] numbersToDigitArrays(int[] input) {
-		
-		return null;
+
+
+		int digit = 0;
+		int number = input[0];
+		while(number!=0) {
+			number /= 10;
+			digit++;
+		}
+		int[][]output = new int[input.length][digit];
+		for (int i = 0; i < input.length; i++) {
+            number = input[i];
+			for (int j = 0; j<digit; j++){
+				int div = (int) Math.pow(10,digit-j-1);
+				int ret = number/div;
+				number = number - div*ret;//I love abusing int div
+				output[i][j]=ret;
+			}
+		}
+
+		return output;
 	
 	}
 	
@@ -100,7 +136,48 @@ public class Two2DArrayProblems {
 	 * an exit. 
 	 */
 	public static int distanceToExit(char[][] input) {
-		
-		return -1;
+		int[]firstLoc=new int[2];
+
+		for(int i = 0; i<input.length;i++){
+			for(int j = 0; j<input[i].length;j++){
+				if(input[i][j]=='@') {
+					firstLoc[0] = i;
+					firstLoc[1] = j;
+				}
+			}
+		}
+		int count = 0;
+		for(int i = 0; i<input.length;i++){
+			for(int j = 0; j<input[i].length;j++){
+				if(input[i][j]=='X') {
+					count++;
+				}
+			}
+		}
+		int temp = 0;
+		int[][] targets= new int[count][2];
+		for(int i = 0; i<input.length;i++){
+			for(int j = 0; j<input[i].length;j++){
+				if(input[i][j]=='X') {
+					targets[temp][0]=i;
+					targets[temp][1]=j;
+					temp++;
+				}
+			}
+		}
+		int t1 = firstLoc[0];
+		int t2 = firstLoc[1];
+		int t3 = targets[0][0];
+		int t4 = targets[0][1];
+		int diff =Math.abs(t1-t3)+Math.abs(t2-t4);
+		for(int i = 1; i<count; i++) {
+			t3 = targets[i][0];
+			t4 = targets[i][1];
+			int dif = Math.abs(t1-t3)+Math.abs(t2-t4);
+			if (diff>dif){
+				diff = dif;
+			}
+		}
+		return diff;
 	}
 }
