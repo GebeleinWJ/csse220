@@ -84,8 +84,6 @@ public class Two2DArrayProblems {
 	 *  
 	 */
 	public static int[][] numbersToDigitArrays(int[] input) {
-
-
 		int digit = 0;
 		int number = input[0];
 		while(number!=0) {
