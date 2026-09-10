@@ -3,8 +3,8 @@ package HWSmallProblems;
 /**
  ****************************************************************************************
  *         REQUIRED HELP CITATION
- *
- *         TODO: cite your help here or say "only used CSSE220 materials"
+ *         Some Math functions looked up.
+ *         All code not already supplied by this HWK was writen by me, Will Gebelein
  ****************************************************************************************
  *
  * <dl>
@@ -60,7 +60,14 @@ public class HWSmallProblems {
 	 * @return
 	 */
 	public static boolean secondDigit5(int input) {
-		throw new UnsupportedOperationException("TODO: delete this statement and implement this operation.");
+		int f = input/10;
+		if (f%10==5){
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 
@@ -83,7 +90,30 @@ public class HWSmallProblems {
 	 * Requires: for loops
 	 */
 	public static double pow(int num, int power) {
-		throw new UnsupportedOperationException("TODO: delete this statement and implement this operation.");
+		double out = num;
+		double mul = num;
+		if(power>0)
+		{
+			for (int i = 1; i<power; i++)
+			{
+				out =out*mul;
+			}
+		}
+		else if(power<0)
+		{
+			out = 1.0/num;
+			for (int i = -1; i>power; i--)
+			{
+				out =out/mul;
+			}
+		}
+		if(power==0)
+		{
+			return 1;
+		}
+		else {
+			return out;
+		}
 	}
 
 	/**
@@ -101,7 +131,16 @@ public class HWSmallProblems {
 	 * Requires: arrays, for loops
 	 */
 	public static int[] powersOfTwo(int maxExponent) {
-		throw new UnsupportedOperationException("TODO: delete this statement and implement this operation.");
+
+		if(maxExponent<0){
+			return new int[0];
+		}
+		int[] exp = new int[maxExponent+1];
+		for (int i =0; i<=maxExponent; i++)
+		{
+			exp[i]=(int)(Math.pow(2.0,i));
+		}
+		return exp;
 	}
 
 	/**
@@ -117,7 +156,17 @@ public class HWSmallProblems {
 	 * Requires: arrays, for loops
 	 */
 	public static int[] maxArray(int[] one, int[] two) {
-		throw new UnsupportedOperationException("TODO: delete this statement and implement this operation.");
+		int[] out = new int[one.length];
+		for (int i = 0; i<one.length; i++)
+		{
+			if(one[i]>two[i]){
+				out[i]=one[i];
+			}
+			else {
+				out[i]=two[i];
+			}
+		}
+		return out;
 	}
 
 	/**
@@ -135,7 +184,16 @@ public class HWSmallProblems {
 	 * @return a score
 	 */
 	public static int footballScore(char[] input) {
-		throw new UnsupportedOperationException("TODO: delete this statement and implement this operation.");
+		int score = 0;
+		for(int i = 0; i<input.length;i++){
+			if(input[i]=='F'){
+				score=score+3;
+			}
+			if(input[i]=='T'){
+				score=score+7;
+			}
+		}
+		return score;
 	}
 
 	/**
@@ -152,6 +210,7 @@ public class HWSmallProblems {
 	 * cite your source in the help citation at the top of the file.
 	 */
 	public static double distanceFromOrigin(double x, double y) {
-		throw new UnsupportedOperationException("TODO: delete this statement and implement this operation.");
+		double pyg = Math.pow(x,2)+Math.pow(y,2);
+		return Math.sqrt(pyg);
 	}
 }
