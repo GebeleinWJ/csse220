@@ -7,7 +7,8 @@ import java.util.ArrayList;
  ***************************************************************************************
  *         REQUIRED HELP CITATION
  *
- *         TODO: cite your help here or say "only used CSSE220 materials"
+ *         No external help received
+ *         Completed by Will Gebelein
  ***************************************************************************************
  *
  * <dl>
@@ -50,7 +51,11 @@ public class HWStringsAndLists {
 	 * Requires if statements, strings
 	 */
 	public static boolean endsWithUpperCaseLetter(String input) {
-		throw new UnsupportedOperationException("TODO: delete this statement and implement this operation.");
+		if(input.length()>0) {
+			char a = input.charAt(input.length()-1);
+            return Character.isUpperCase(a);
+		}
+		return false;
 	}
 
 	/**
@@ -81,7 +86,14 @@ public class HWStringsAndLists {
 	 * Requires: for loops or while loops, strings
 	 */
 	public static int firstDifference(String one, String two) {
-		throw new UnsupportedOperationException("TODO: delete this statement and implement this operation.");
+		for (int i = 0; i<one.length();i++){
+			char a = one.charAt(i);
+			char b = two.charAt(i);
+			if(a!=b){
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	/**
@@ -99,7 +111,17 @@ public class HWStringsAndLists {
 	 * @return a score
 	 */
 	public static int footballScore(String input) {
-		throw new UnsupportedOperationException("TODO: delete this statement and implement this operation.");
+		int total = 0;
+		for(int i = 0; i<input.length();i++){
+			char a = input.charAt(i);
+			if(a=='T'){
+				total+=7;
+			}
+			else if(a=='F'){
+				total+=3;
+			}
+		}
+		return total;
 	}
 
 	/**
@@ -119,7 +141,30 @@ public class HWStringsAndLists {
 	 * Requires: for loops, strings
 	 */
 	public static char mostCommonCharacter(String input) {
-		throw new UnsupportedOperationException("TODO: delete this statement and implement this operation.");
+		ArrayList<Character> cList = new ArrayList<>();
+		for (int i = 0; i<input.length();i++){
+			char a = input.charAt(i);
+			cList.add(a);
+		}
+		ArrayList<Character> alreadyUsed = new ArrayList<>();
+		char mostUsed='0';
+		int count=0;
+		for (int i = 0; i<input.length(); i++){
+			if(!alreadyUsed.contains(cList.get(i))){
+				int newCount = 0;
+				alreadyUsed.add(cList.get(i));
+				for (int j = 0; j<input.length();j++){
+					if(cList.get(i)==cList.get(j)){
+						newCount++;
+					}
+				}
+				if(count<newCount) {
+					count = newCount;
+					mostUsed = cList.get(i);
+				}
+			}
+		}
+		return mostUsed;
 	}
 
 
@@ -144,7 +189,16 @@ public class HWStringsAndLists {
 	 *
 	 */
 	public static ArrayList<String> doubleDouble(ArrayList<String> input) {
-		throw new UnsupportedOperationException("TODO: delete this statement and implement this operation.");
+		ArrayList<String>doubling = new ArrayList<>();
+		int count=0;
+		for (int i = 0; i<input.toArray().length; i++){
+			doubling.add(i+count,input.get(i));
+			if(input.get(i)=="double"){
+				doubling.add(i+count,"double");
+				count++;
+			}
+		}
+		return doubling;
 	}
 
 	/**
@@ -159,7 +213,13 @@ public class HWStringsAndLists {
 	 * threeCharacterStrings(["ab"])   returns []
 	 */
 	public static ArrayList<String> threeCharacterStrings(String input) {
-		throw new UnsupportedOperationException("TODO: delete this statement and implement this operation.");
+		ArrayList<String> charm = new ArrayList<>();
+		if(input.length()>2) {
+			for (int i = 0; i < input.length() - 2; i++){
+				charm.add(input.substring(i,i+3));
+			}
+		}
+		return charm;
 	}
 
 	/**
@@ -186,6 +246,13 @@ public class HWStringsAndLists {
 	 * you will not return a new list, but modify the strings list
 	 */
 	public static void truncateStringsAtX(ArrayList<String> strings) {
-		throw new UnsupportedOperationException("TODO: delete this statement and implement this operation.");
+		for(int i = 0; i< strings.toArray().length; i++){
+			for(int j = 0; j<strings.get(i).length();j++){
+				if(strings.get(i).charAt(j)=='X'){
+					strings.add(i,strings.get(i).substring(0,j+1));
+					strings.remove(i+1);
+				}
+			}
+		}
 	}
 }
