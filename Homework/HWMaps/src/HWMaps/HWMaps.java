@@ -1,6 +1,7 @@
 package HWMaps;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -46,7 +47,11 @@ public class HWMaps {
      * return value = {CDG=118, FOC=14, IND=230}
      */
     public static HashMap<String, Integer> buildAirportMap(String[] airportCodes, Integer[] airportElevations) {
-        throw new UnsupportedOperationException("TODO: Remove this line and implement this method.");
+        HashMap<String,Integer> ha = new HashMap<>();
+        for(int i = 0; i<airportCodes.length; i++){
+            ha.put(airportCodes[i],airportElevations[i]);
+        }
+        return ha;
     } // buildAirportMap
 
     /**
@@ -61,7 +66,12 @@ public class HWMaps {
      * Don't forget about the modulus operator (%)
      */
     public static int firstDivisibleBy77(int[] numbers) {
-        throw new UnsupportedOperationException("TODO: Remove this line and implement this method.");
+        for(int i = 0; i<numbers.length;i++){
+            if(numbers[i]%77==0){
+                return numbers[i];
+            }
+        }
+        return -1;
     }
 
     /**
@@ -86,7 +96,22 @@ public class HWMaps {
      * return value = 'c'
      */
     public static char mostCommonCharacter(String inputString) {
-        throw new UnsupportedOperationException("TODO: Remove this line and implement this method.");
+        HashMap<Character,Integer> common = new HashMap<>();
+        char highest=' ';
+        int maxNum= 0;
+        for(int i = 0; i<inputString.length();i++){
+            if(common.containsKey(inputString.charAt(i))){
+                common.compute(inputString.charAt(i), (k, count) -> count + 1);
+            }
+            else{
+                common.put(inputString.charAt(i),1);
+            }
+            if(common.get(inputString.charAt(i))>maxNum){
+                maxNum=common.get(inputString.charAt(i));
+                highest = inputString.charAt(i);
+            }
+        }
+        return highest;
     } // mostCommonCharacter
 
 
@@ -122,7 +147,15 @@ public class HWMaps {
      * return value = null, because no city experienced a temperature drop
      */
     public static String getTemperatureDropCity(int[] recordedTemps, String[] cityNames) {
-        throw new UnsupportedOperationException("TODO: Remove this line and implement this method.");
+        HashMap<String,Integer> temps = new HashMap<>();
+        String lowest = null;
+        for(int i = 0; i<cityNames.length; i++){
+                if (temps.getOrDefault(cityNames[i], 0) > recordedTemps[i]) {
+                    lowest = cityNames[i];
+                }
+            temps.put(cityNames[i],recordedTemps[i]);
+        }
+        return lowest;
     } // getTemperatureDropCity
 
     /**
@@ -138,7 +171,21 @@ public class HWMaps {
      * Requires: arrays, nested for loops
      */
     public static int timesOccur(int[] shorter, int[] longer) {
-        throw new UnsupportedOperationException("TODO: Remove this line and implement this method.");
+        int count = 0;
+        int len = shorter.length;
+        for (int i = 0; i<=longer.length-len;i++){
+            int[] temp = new int[len];
+            for(int j = 0; j<len; j++){
+                temp[j] = longer[i+j];
+            }
+
+            if (Arrays.equals(temp, shorter)){
+                count++;
+            }
+        }
+
+
+        return count;
     }
 
     /**
@@ -189,6 +236,18 @@ public class HWMaps {
      * @return list containing all names that correspond to some city more than once
      */
     public static ArrayList<String> citiesVisitedMoreThanOnce(String[] names, String[] citiesVisited) {
-        throw new UnsupportedOperationException("TODO: Remove this line and implement this method.");
+        ArrayList<String> output = new ArrayList<>();
+        for(int i = 0; i<names.length;i++){
+            int count = -1;
+            for(int j = 0; j<names.length;j++){
+                if(names[j].equals(names[i]) & citiesVisited[j].equals(citiesVisited[i])){
+                    count++;
+                }
+                if(count>0&!output.contains(names[i])){
+                    output.add(names[i]);
+                }
+            }
+        }
+        return output;
     }
 }
