@@ -9,8 +9,7 @@ import java.util.HashMap;
  * <p>
  * ***************************************************************************************
  * REQUIRED HELP CITATION
- *
- * TODO: cite your help here or say "only used CSSE220 materials"
+ * Only used CSSE220 materials
  * ***************************************************************************************
  *
  * <dl>
