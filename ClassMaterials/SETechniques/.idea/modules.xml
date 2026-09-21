@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SourceCode/PracticeFirstOODesign/PracticeFirstOODesign.iml" filepath="$PROJECT_DIR$/SourceCode/PracticeFirstOODesign/PracticeFirstOODesign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SourceCode/PracticeFirstOODesignSolution/PracticeFirstOODesignSolution.iml" filepath="$PROJECT_DIR$/SourceCode/PracticeFirstOODesignSolution/PracticeFirstOODesignSolution.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SETechniques.iml" filepath="$PROJECT_DIR$/.idea/SETechniques.iml" />
+    </modules>
+  </component>
+</project>
