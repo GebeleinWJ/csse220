@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/MapsAndObjectIntro.iml" filepath="$PROJECT_DIR$/.idea/MapsAndObjectIntro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SourceCode/PracticeMapsAndObjectIntro/PracticeMapsAndObjectIntro.iml" filepath="$PROJECT_DIR$/SourceCode/PracticeMapsAndObjectIntro/PracticeMapsAndObjectIntro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SourceCode/PracticeSolutionMapsAndObjectIntro/PracticeSolutionMapsAndObjectIntro.iml" filepath="$PROJECT_DIR$/SourceCode/PracticeSolutionMapsAndObjectIntro/PracticeSolutionMapsAndObjectIntro.iml" />
+    </modules>
+  </component>
+</project>
