@@ -1,11 +1,22 @@
 /**
-  * 
-  * TODO (1) Implement this class and (2) Document using Javadoc comments as well as regular comments
-  *
-  * If you are running a recent version of Eclipse, you can command Eclipse to generate the Javadoc .html file
-  * by using the command from the menu bar: Project | Generate Javadoc...
-  * 
+ * Class: Question
+ * @author Will Gebelein
+ * <br>Purpose: Contains questions for quizzes.
+ * <br>Restrictions: Cannot display Question queries without the Quiz class.
  */
 public class Question {
-
+    int id;
+    String query;
+    //Constructor
+    Question(int ident, String question){
+        this.id = ident;
+        this.query = question;
+    }
+    //Question Access
+    public String questionCall(){
+        return "Question ["+this.id+"]: "+this.query;
+    }
 }
+/**
+ * Nice and easy. Question really didn't need much.
+ */

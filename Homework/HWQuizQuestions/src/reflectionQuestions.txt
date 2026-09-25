@@ -1,19 +1,19 @@
 Reflection Questions:
 
 1.A In your implementation could you replace each Question class with just a Java String (yes or no)? 
-
+No.
 
 1.B Explain why or why not (2-3 sentences)
-
-
+Replacing the Question class with a String would require each quiz to be updated individually.
+The Question class enables global question updates, which was our goal.
 
 2.A. What data type did you use to represent the 1-to-many relationship between QuizMain and Question? (provide the type declaration)
-
+I used a HashMap to represent the 1-to-many relationship of QuizMain and Question.
 
 2.B. What is another data type you could have used? (provide the type declaration) 
-
+I could have used ArrayList.
 
 
 2.C. Would that have made your implementation easier or harder to implement? Explain why (2-3 sentences)
-
-
+Yes. An ArrayList lacks an ID, which means I would have needed many more functions to implement.
+If it was easier, I would have used it.
