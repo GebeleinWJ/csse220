@@ -31,7 +31,7 @@ public class TestThisClass {
         }
         return count;
     }
-
+//Xavier is a cruel, cruel person, who needs to be kept away from the Xanax
 
     /**
      * Given an input string, count the number of occurrences of
@@ -66,6 +66,5 @@ public class TestThisClass {
         }
         return count;
     }
-
 
 }

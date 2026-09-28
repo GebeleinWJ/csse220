@@ -37,8 +37,11 @@ public class LoopProbs {
 	 * 
 	 */
 	public static long fact(int num) {
-		// TODO: Please provide an implementation for this one
-		return 0;
+		int temp = 1;
+		for (int i = num; i>0;i--){
+			temp = temp*i;
+		}
+		return temp;
 	}
 	
 	
@@ -79,8 +82,11 @@ public class LoopProbs {
 	 * null returns ""
 	 */
 	public static String stringBits(String str) {
-		// TODO: Please provide an implementation for this one
-		return null;
+		String temp = "";
+		for (int i = 0; i<str.length(); i=i+2){
+			temp = temp+str.substring(i,i+1);
+		}
+		return temp;
 	}
 
 	
