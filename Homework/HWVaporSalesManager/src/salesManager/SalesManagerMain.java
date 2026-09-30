@@ -21,10 +21,9 @@ import java.util.Scanner;
  * REQUIRED HELP CITATION
  * 
  * TODO: cite your help here or say "only used CSSE220 materials"
- *************************************************************************************** 
- * TODO: List each team member's name and email username here. 
- * @author First Student - studenfi
- * @author Second Student - studense
+ ***************************************************************************************
+ * @author First Student - Will Gebelein
+ * @author Second Student - Luke Mowery
  *************************************************************************************** 
  */
 
@@ -48,25 +47,23 @@ public class SalesManagerMain {
 	 Therefore, you may want to use these private methods: */
 
 	private Game getGameGivenTitle(String gameTitle) {
-		return null;
 		// TODO: When you are ready, uncomment the following code and delete the return statement above
-		// for (Game game : this.games) {
-		// 	if (gameTitle.equals(game.getTitle())) {
-		// 		return game;
-		// 	}
-		// }
-		// return null;
+		 for (Game game : this.games) {
+		 	if (gameTitle.equals(game.getTitle())) {
+		 		return game;
+		 	}
+		 }
+		 return null;
 	}
 
 	private Bundle getBundleGivenName(String bundleName) {
-		return null;
 		// TODO: When you are ready, uncomment the following code and delete the return statement above
-		// for (Bundle bundle : this.bundles) {
-		// 	if (bundleName.equals(bundle.getName())) {
-		// 		return bundle;
-		// 	}
-		// }
-		// return null;
+		 for (Bundle bundle : this.bundles) {
+		 	if (bundleName.equals(bundle.getName())) {
+		 		return bundle;
+		 	}
+		 }
+		 return null;
 	}
 
 	/**
@@ -80,11 +77,10 @@ public class SalesManagerMain {
 	 * @return "ok" if successful
 	 */
 	private String handleAddGame(String gameTitle, String gameRating, double gamePrice) {
-		return "not yet implemented";
 		// TODO: When you are ready, uncomment the following code and delete the return statement above
-		// Game newGame = new Game(gameTitle, gameRating, gamePrice);
-		// this.games.add(newGame);
-		// return "ok";
+		 Game newGame = new Game(gameTitle, gameRating, gamePrice);
+		 this.games.add(newGame);
+		 return "ok";
 	}
 
 	/**
@@ -98,23 +94,25 @@ public class SalesManagerMain {
 	 * @return "ok" if successful
 	 */
 	private String handleAddBundle(String bundleName, double bundlePrice, ArrayList<String> gameTitles) {
-		return "not yet implemented";
-		// TODO: When you are ready, uncomment the following code and delete the return statement above
-		// ArrayList<Game> games = new ArrayList<Game>();
-		// for (String gameTitle : gameTitles) {
-		// 	Game game = this.getGameGivenTitle(gameTitle);
-		// 	// TODO (GenAI part): Create a new Game object if the given title does not yet exist
-		// 	games.add(game);
-		// }
+		ArrayList<Game> games = new ArrayList<Game>();
+		for (String gameTitle : gameTitles) {
+			Game game = this.getGameGivenTitle(gameTitle);
+			// TODO (GenAI part): Create a new Game object if the given title does not yet exist
+			if (game == null) {
+				game = new Game(gameTitle, "T", 49.95);//It
+				this.games.add(game);
+			}
+			games.add(game);
+		}
 
-		// Bundle newBundle = new Bundle(bundleName, bundlePrice, games);
-		// this.bundles.add(newBundle);
+		Bundle newBundle = new Bundle(bundleName, bundlePrice, new ArrayList<Game>(games));
+		this.bundles.add(newBundle);
 
-		// for (Game game : games) {
-		// 	game.addBundle(newBundle);
-		// }
-		
-		// return "ok";
+		for (Game game : games) {
+			game.addBundle(newBundle);
+		}
+
+		return "ok";
 	}
 
 	/**
@@ -125,15 +123,13 @@ public class SalesManagerMain {
 	 * @return "ok" if successful, "game not found" if unsuccessful
 	 */
 	private String handleSellGame(String gameTitle) {
-		return "not yet implemented";
-		// TODO: When you are ready, uncomment the following code and delete the return statement above
-		// Game game = this.getGameGivenTitle(gameTitle);
-		// if (game != null) {
-		// 	game.sellCopy();
-		// 	return "ok";
-		// }
+		 Game game = this.getGameGivenTitle(gameTitle);
+		 if (game != null) {
+		 	game.sellIndividualCopy();//changed to sell individual copy
+		 	return "ok";
+		 }
 		
-		// return "game not found";
+		 return "game not found";
 	}
 
 	/**
@@ -143,15 +139,13 @@ public class SalesManagerMain {
 	 * @return "ok" if successful, "bundle not found" if unsuccessful
 	 */
 	private String handleSellBundle(String bundleName) {
-		return "not yet implemented";
-		// TODO: When you are ready, uncomment the following code and delete the return statement above
-		// Bundle bundle = this.getBundleGivenName(bundleName);
-		// if (bundle != null) {
-		// 	bundle.sellCopy();
-		// 	return "ok";
-		// }
+		 Bundle bundle = this.getBundleGivenName(bundleName);
+		 if (bundle != null) {
+		 	bundle.sellCopy();
+		 	return "ok";
+		 }
 
-		// return "bundle not found";
+		 return "bundle not found";
 	}
 
 	/**
@@ -162,14 +156,12 @@ public class SalesManagerMain {
 	 * @return String representation of game sales report
 	 */
 	private String handlePrintGameSalesReport(String gameTitle) {
-		return "not yet implemented";
-		// TODO: When you are ready, uncomment the following code and delete the return statement above
-		// Game game = this.getGameGivenTitle(gameTitle);
-		// if (game != null) {
-		// 	return game.printSalesReport();
-		// }
+		 Game game = this.getGameGivenTitle(gameTitle);
+		 if (game != null) {
+		 	return game.handlePrintSalesReport();//changed to handlePrintSalesReport
+		 }
 
-		// return "game not found";
+		 return "game not found";
 	}
 
 	/**
@@ -180,14 +172,13 @@ public class SalesManagerMain {
 	 * @return String representation of bundle sales report
 	 */
 	private String handlePrintBundleSalesReport(String bundleName) {
-		return "not yet implemented";
-		// TODO: When you are ready, uncomment the following code and delete the return statement above
-		// Bundle bundle = this.getBundleGivenName(bundleName);
-		// if (bundle != null) {
-		// 	return bundle.printSalesReport();
-		// }
+		 Bundle bundle = this.getBundleGivenName(bundleName);
+		 if (bundle != null) {
+			 String k = bundle.handlePrintSalesReport();
+		 	return bundle.handlePrintSalesReport();//changed to handlePrintSalesReport
+		 }
 
-		// return "bundle not found";
+		 return "bundle not found";
 	}
 
 	/**
@@ -200,7 +191,18 @@ public class SalesManagerMain {
 	 */
 	private String handleGetBestSellingBundle() {
 		// TODO (GenAI part) Your code here
-		return null;
+		if (this.bundles.isEmpty()) {
+			return null;
+		}
+
+		Bundle bestBundle = this.bundles.get(0);
+		for (Bundle bundle : this.bundles) {
+			if (bundle.numberCopiesSold > bestBundle.numberCopiesSold) {
+				bestBundle = bundle;
+			}
+		}
+
+		return bestBundle.getName();
 	}
 
 	/**
@@ -218,8 +220,21 @@ public class SalesManagerMain {
 	 * @return String title of the game with the highest revenue
 	 */
 	private String handleGetHighestRevenueGame() {
-		// TODO (GenAI part) Your code here
-		return null;
+
+		Game highestRevenueGame = null;
+		double highestRevenue = -1;
+
+		for (Game game : this.games) {
+
+			double totalRevenue = game.computeTotalRevenue();
+
+			if (totalRevenue > highestRevenue) {
+				highestRevenue = totalRevenue;
+				highestRevenueGame = game;
+			}
+		}
+
+		return highestRevenueGame.getTitle();
 	}
 
 	/**
@@ -347,7 +362,7 @@ public class SalesManagerMain {
 	 * @param args Command line arguments (ignored)
 	 */
 	public static void main(String[] args) {
-		SalesManagerMain manager = new SalesManagerMain();
+		SalesManagerMainB manager = new SalesManagerMainB();
 		System.out.println("Welcome to the Vapor Sales Manager.  Enter commands.  Type 'exit' to end.");
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);

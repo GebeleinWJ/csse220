@@ -1,5 +1,8 @@
 package salesManager;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * TODO: Add class-level description here.
  * 
@@ -19,12 +22,67 @@ public class Bundle {
 	
 	// HINT: See the static methods `doubleToDollars` and `listToCommaSeparatedString` 
 	// in SalesManager.java. Using these methods will save you time when formatting 
-	// the sales report. 
+	// the sales report.
+
+	String name;
+	double price;
+	ArrayList<Game> games = new ArrayList<>();
+	int numberCopiesSold =0;
 	
 	public Bundle() {} // Keep this constructor for unit tests
 	
-	public Bundle(String name) {
-		// TODO Modify this constructor as needed.   
+	public Bundle(String n, double p, ArrayList<Game> g) {
+		this.name = n;
+		this.price = p;
+		this.games = g;
+		this.numberCopiesSold=0;
+	}
+
+	public void sellCopy(){
+		this.numberCopiesSold++;
+		int length = this.games.toArray().length;
+		for(int i =0; i<length; i++){
+			this.games.get(i).sellCopy(this);
+		}
+	}
+
+	public double computeRevenuePerGame(){
+		return this.price*this.numberCopiesSold;
+	}
+	public String handlePrintSalesReport(){
+		String x = games.get(0).getTitle();
+		for (int i = 1; i<games.toArray().length;i++){
+			x = x+","+games.get(i).getTitle();
+		}
+		return "Name: "+this.name+"\nGames: "+ x +"\nPrice: "+SalesManagerMain.doubleToDollars(this.price)+"\nCopies Sold: "+this.numberCopiesSold+"\nTotal Revenue: "+ SalesManagerMain.doubleToDollars(computeRevenuePerGame());
+	}
+	//mutators
+	public void addGame(Game g){
+		this.games.add(g);
+	}
+	public void removeGame(Game g){
+		this.games.remove(g);
+	}
+	public void alterPrice(double p){
+		this.price = p;
+	}
+	//getters
+	public String getName(){
+		return this.name;
+	}
+	public double getPrice(){
+		return this.price;
+	}
+	public String[] getGames(){
+		int length = this.games.toArray().length;
+		String[] gregs = new String[length];
+		for(int i =0; i<length; i++){
+			gregs[i] = games.get(i).getTitle();
+		}
+		return gregs;
+	}
+	public String toString(){
+		return "Name: "+this.name+"\nGames: "+ Arrays.toString(games.toArray()) +"\nPrice: "+SalesManagerMain.doubleToDollars(this.price)+"\nCopies Sold: "+this.numberCopiesSold;
 	}
 
 	// (1) Requirements on Field Declaration Design/Engineering:

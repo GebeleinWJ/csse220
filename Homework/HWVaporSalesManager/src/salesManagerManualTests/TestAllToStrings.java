@@ -6,8 +6,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import salesManager.Bundle;
-import salesManager.Game;
+import salesManager.*;
 import salesManager.RunAllManualTests;
 
 public class TestAllToStrings {
