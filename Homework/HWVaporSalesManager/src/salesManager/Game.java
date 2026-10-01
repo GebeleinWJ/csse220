@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * TODO: Add class-level description here.
- * 
+ * The Game class allows for the creation of games,
+ * and allows for the selling of these games.
+ * Each Game tracks the number of times it was sold, both in a bundle and by itself.
+ * allowing for easy computation of revenue.
  *************************************************************************************** 
  * REQUIRED HELP CITATION
  * 
- * TODO: cite your help here or say "only used CSSE220 materials"
+ * Used copilot and ChatGPT for GenAI sections.
  *************************************************************************************** 
  * TODO: List each team member's name and email username here. 
  * @author First Student - studenfi
@@ -17,15 +19,16 @@ import java.util.Objects;
  *************************************************************************************** 
  */
 public class Game {
-	// TODO: Complete this class by adding fields, constructors, and methods here.
 	// Adhere to (1), (2), and (3) below.
+
+	//Instance variables. title, rating, and price are non-moving parts, while the other parts alter throughout the life of a Game.
 	String title;
 	String rating;
 	double price;
-	int bundleNumCopiesSold=0;
-	int personalNumCopiesSold=0;
+	int bundleNumCopiesSold=0; //determines how many individual copies were sold
+	int personalNumCopiesSold=0; //determines how many bundled copies were sold
 	double bundleRevenue = 0;
-	ArrayList<Bundle> bundlesIn = new ArrayList<>();
+	ArrayList<Bundle> bundlesIn = new ArrayList<>();//because trying to calculate bundleRevenue without this would suck
 	// HINT: See the static methods `doubleToDollars` and `listToCommaSeparatedString` 
 	// in SalesManager.java. Using these methods will save you time when formatting 
 	// the sales report. 
@@ -33,26 +36,65 @@ public class Game {
 	public Game() {
 	} // Keep this constructor for unit tests
 
+	/**
+	 * The main constructor. Assigns the params to their instance variables, and sets the
+	 * this.bundleRevenue to 0.
+	 * @param title
+	 * @param rating
+	 * @param price
+	 */
 	public Game(String title, String rating, double price) {
 		this.title = title;
 		this.rating = rating;
 		this.price = price;
 		this.bundleRevenue=0;
 	}
+
+	/**
+	 * Sells a copy individually. Separate from sellCopy to employ different functions for each,
+	 * which makes this easier.
+	 */
 	public void sellIndividualCopy(){
 		this.personalNumCopiesSold++;
 	}
+	/**
+	 * Sells a copy from a bundle. Separate from sellCopy to employ different functions for each,
+	 * which makes this easier. bundleRevenue is incremented here, instead of a single ending calculation.
+	 */
 	public void sellCopy(Bundle b){
 		this.bundleRevenue+=b.getPrice()/b.getGames().length;
 		this.bundleNumCopiesSold++;
 	}
+
+	/**
+	 * Computes the total revenue of the game, combining bundleRevenue with personal revenue.
+	 * @return double
+	 */
 	public double computeTotalRevenue(){
 		return this.bundleRevenue+this.price*this.personalNumCopiesSold;
 	}
+
+	/**
+	 * Returns a sales report String in the form:
+	 * Name: X
+	 * Rating: T
+	 * Price: $XX.XX
+	 * Copies Sold Individually: XX
+	 * Copies Sold In Bundles: XX
+	 * Total Copies Sold: XX
+	 * Total Revenue: $XXX.XX
+	 * This function uses SalesManagerMain.doubleToDollars() and Game.computeTotalRevenue()
+	 * @return String
+	 */
 	public String handlePrintSalesReport(){
 
 		return "Title: "+this.title+"\nRating: "+this.rating+"\nPrice: "+ SalesManagerMain.doubleToDollars(this.price)+"\nCopies Sold Individually: "+this.personalNumCopiesSold+"\nCopies Sold in Bundles: "+this.bundleNumCopiesSold+"\nTotal Copies Sold: "+(this.bundleNumCopiesSold+this.personalNumCopiesSold)+"\nTotal Revenue: "+ SalesManagerMain.doubleToDollars(computeTotalRevenue());
 	}
+
+	/**
+	 * Adda a bundle to the bundlesIn arrayList.
+	 * @param b
+	 */
 	public void addBundle(Bundle b){
 		boolean temp = false;
 		for(int i = 0; i<b.getGames().length; i++){
@@ -65,9 +107,18 @@ public class Game {
 		}
 		this.bundlesIn.add(b);
 	}
+
+	/**
+	 * Gets the title of the game.
+	 * @return String
+	 */
 	public String getTitle(){
 		return this.title;
 	}
+	/**
+	 * This toString method is a watered-down version of handlePrintSalesReport
+	 * @return String
+	 */
 	public String toString(){
 		return "Title: "+this.title+"\nRating: "+this.rating+"\nPrice: "+ SalesManagerMain.doubleToDollars(this.price)+"\nCopies Sold Individually: "+this.personalNumCopiesSold+"\nCopies Sold in Bundles: "+this.bundleNumCopiesSold;
 	}

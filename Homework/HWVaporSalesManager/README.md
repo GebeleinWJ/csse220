@@ -31,12 +31,12 @@ Complete the report template in [VaporSalesReport.docx](./VaporSalesReport.docx)
 To earn full credit, answer every question with serious, thoughtful responses, using complete sentences (except in pseudocode and/or diagrams). 
 
 ### 4) Commenting & Conventions Details
-To earn full credit for *Commenting & Conventions*, follow the style guidelines in [the CSSE 220 Grading Guide](../../Docs/grading_guide.md). In particular, make sure you add Javadoc *class-level* comments at the top of each class: `SalesManagerMainB`, `Game`, and `Bundle`. 
+To earn full credit for *Commenting & Conventions*, follow the style guidelines in [the CSSE 220 Grading Guide](../../Docs/grading_guide.md). In particular, make sure you add Javadoc *class-level* comments at the top of each class: `SalesManagerMain`, `Game`, and `Bundle`. 
 For this assignment, you do NOT need Javadocs for every method. 
 
 ## To do:
 1. Import this project (HWVaporSalesManager) from your local copy of the CSSE220 repo into your IDE.  
-2. Modify the classes `SalesManagerMainB`, `Game`, and `Bundle` to implement the required functionality. You may use your own DP2 solution, or you can refer to the DP2 solution we provided in class or via email (the delivery method varies by quarter). 
+2. Modify the classes `SalesManagerMain`, `Game`, and `Bundle` to implement the required functionality. You may use your own DP2 solution, or you can refer to the DP2 solution we provided in class or via email (the delivery method varies by quarter). 
 3. Run the included JUnit tests to ensure your solution passes all the unit tests - do this by running *RunAllManualTests.java* and *RunAllGenAITests.java*
 4. Upload one copy per team of the completed *.java* files to this assignment's drop box: 
     - *Game.java*
@@ -119,7 +119,7 @@ The good news is that the difficulty of dealing with the text-based input and ou
 To solve this problem, you will modify 3 classes. 
 1. An instance of the `Game` class will keep track of a game's title, rating, price, and number of copies sold. 
 2. An instance of the `Bundle` class will keep track of a bundle's name, which games are in the bundle, the bundle's price, and how many copies of the bundle have been sold. 
-3. The `SalesManagerMainB` class will store a list of all `Game` objects and a list of all `Bundle` objects, as well as handling input/output. 
+3. The `SalesManagerMain` class will store a list of all `Game` objects and a list of all `Bundle` objects, as well as handling input/output. 
 
 The starter code in SalesManagerMain supports the following commands:
 

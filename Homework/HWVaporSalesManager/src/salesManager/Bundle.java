@@ -5,32 +5,40 @@ import java.util.Arrays;
 
 /**
  * TODO: Add class-level description here.
- * 
+ * The Bundle class allows for the grouping of games into bundles,
+ * and allows for the selling of these bundles.
+ * Each bundle tracks the number of times it was sold, allowing for easy computation of revenue.
  *************************************************************************************** 
  * REQUIRED HELP CITATION
  * 
- * TODO: cite your help here or say "only used CSSE220 materials"
- *************************************************************************************** 
- * TODO: List each team member's name and email username here. 
- * @author First Student - studenfi
- * @author Second Student - studense
+ * Used copilot and chatGPT for GenAI sections. Bundle doesn't have any of these
+ ***************************************************************************************
+ * @author Will Gebelein - gebelewj@rose-hulman.edu
+ * @author Luke Mowery - moweryLr@rose-hulman.edu
  *************************************************************************************** 
  */
 public class Bundle {
-	// TODO: Complete this class by adding fields, constructors, and methods here.
 	// Adhere to (1), (2), and (3) below.
 	
 	// HINT: See the static methods `doubleToDollars` and `listToCommaSeparatedString` 
 	// in SalesManager.java. Using these methods will save you time when formatting 
 	// the sales report.
 
+	//Instance variables. name, price are constant. games and numberCopiesSold both alter over time.
 	String name;
 	double price;
 	ArrayList<Game> games = new ArrayList<>();
 	int numberCopiesSold =0;
 	
 	public Bundle() {} // Keep this constructor for unit tests
-	
+
+	/**
+	 * The main constructor. Assigns the params to their instance variables, and sets the
+	 * this.numberCopiesSold to 0.
+	 * @param n
+	 * @param p
+	 * @param g
+	 */
 	public Bundle(String n, double p, ArrayList<Game> g) {
 		this.name = n;
 		this.price = p;
@@ -38,25 +46,49 @@ public class Bundle {
 		this.numberCopiesSold=0;
 	}
 
+	/**
+	 * Sells a copy of the bundle. Increases numberCopiesSold, and triggers the bundle sell for all games
+	 * in the bundle.
+	 */
 	public void sellCopy(){
 		this.numberCopiesSold++;
 		int length = this.games.toArray().length;
 		for(int i =0; i<length; i++){
-			this.games.get(i).sellCopy(this);
+			this.games.get(i).sellCopy(this);//Despite the function not saying bundle, this is the bundle specifc selling.
 		}
 	}
 
-	public double computeRevenuePerGame(){
+	/**
+	 * Returns the total revenue earned by this bundle.
+	 * @return double
+	 */
+	public double totalBundleRevenue(){
 		return this.price*this.numberCopiesSold;
 	}
+
+	/**
+	 * Returns a sales report String in the form:
+	 * Name: X
+	 * Games: X,Y,Z
+	 * Price: $XX.XX
+	 * Copies Sold: XX
+	 * Total Revenue: $XXX.XX
+	 * This function uses SalesManagerMain.doubleToDollars() and Bundle.totalBundleRevenue()
+	 * @return String
+	 */
 	public String handlePrintSalesReport(){
 		String x = games.get(0).getTitle();
-		for (int i = 1; i<games.toArray().length;i++){
+		for (int i = 1; i<games.toArray().length;i++){//this for loop is what displays the Games: X,Y,Z
 			x = x+","+games.get(i).getTitle();
 		}
-		return "Name: "+this.name+"\nGames: "+ x +"\nPrice: "+SalesManagerMain.doubleToDollars(this.price)+"\nCopies Sold: "+this.numberCopiesSold+"\nTotal Revenue: "+ SalesManagerMain.doubleToDollars(computeRevenuePerGame());
+		return "Name: "+this.name+"\nGames: "+ x +"\nPrice: "+SalesManagerMain.doubleToDollars(this.price)+"\nCopies Sold: "+this.numberCopiesSold+"\nTotal Revenue: "+ SalesManagerMain.doubleToDollars(totalBundleRevenue());
 	}
-	//mutators
+
+	/**
+	 * These mutators allow for games to be added to the bundle, games to be removed from the bundle,
+	 * and the price of the bundle to be changed. (removeGame and alterPrice are not utilized by main)
+	 * @param g/p
+	 */
 	public void addGame(Game g){
 		this.games.add(g);
 	}
@@ -66,7 +98,11 @@ public class Bundle {
 	public void alterPrice(double p){
 		this.price = p;
 	}
-	//getters
+
+	/**
+	 * These getters can return the name, price, and games of the bundle.
+	 * @return String/double/String[]
+	 */
 	public String getName(){
 		return this.name;
 	}
@@ -75,12 +111,17 @@ public class Bundle {
 	}
 	public String[] getGames(){
 		int length = this.games.toArray().length;
-		String[] gregs = new String[length];
-		for(int i =0; i<length; i++){
+		String[] gregs = new String[length];//Don't worry about the variable name. This is a temporary variable that only exists here. Its name is useless.
+		for(int i =0; i<length; i++){//This loop adds Game's to a Game array
 			gregs[i] = games.get(i).getTitle();
 		}
 		return gregs;
 	}
+
+	/**
+	 * This toString method is a watered-down version of handlePrintSalesReport
+	 * @return String
+	 */
 	public String toString(){
 		return "Name: "+this.name+"\nGames: "+ Arrays.toString(games.toArray()) +"\nPrice: "+SalesManagerMain.doubleToDollars(this.price)+"\nCopies Sold: "+this.numberCopiesSold;
 	}

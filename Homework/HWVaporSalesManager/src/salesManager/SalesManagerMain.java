@@ -362,7 +362,7 @@ public class SalesManagerMain {
 	 * @param args Command line arguments (ignored)
 	 */
 	public static void main(String[] args) {
-		SalesManagerMainB manager = new SalesManagerMainB();
+		SalesManagerMain manager = new SalesManagerMain();
 		System.out.println("Welcome to the Vapor Sales Manager.  Enter commands.  Type 'exit' to end.");
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
