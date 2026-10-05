@@ -16,7 +16,7 @@ package examples;
  * 
  * @author Cay Horstmann.
  */
-public class Triangle {
+public class fTriangle {
 	private int width;
 
 	/**
