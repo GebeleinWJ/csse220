@@ -24,10 +24,8 @@ import java.awt.geom.Dimension2D;
  * TODO: Part 2 You can change and should change anything you wish to in this file
  *
  */
-public class TagPlayer {
-	
-	private int centerX, centerY, radius, velX, velY, moveSpeed;
-	private Color color;
+public class TagPlayer extends SimulationObject {
+
 	
 
 	//unique to TagPlayer
@@ -40,20 +38,16 @@ public class TagPlayer {
 	private int tagBackCountDown = 0;
 
 	public TagPlayer(int x, int y, boolean isIt) {
-		this.centerX = x;
-		this.centerY = y;
-		this.velX = (int)(moveSpeed - Math.random() * moveSpeed * 2);
-		this.velY = (int)(moveSpeed - Math.random() * moveSpeed * 2);
-		
+		super(x,y,"TagPlayer");
 
 		///////START  -   THIS CODE IS UNIQUE TO TagPlayer
-		this.radius = TAG_PLAYER_RADIUS;
-		this.moveSpeed = TAG_PLAYER_SPEED;
+		super.setRadius(TAG_PLAYER_RADIUS);
+		super.setMoveSpeed(TAG_PLAYER_SPEED);
 		this.isCurrentlyIt = isIt;
 		if (this.isCurrentlyIt) {
-			this.color = IT_COLOR;
+			super.setColor(IT_COLOR);
 		} else {
-			this.color = REGULAR_COLOR;
+			super.setColor(REGULAR_COLOR);
 		}
 		///////END  -   THIS CODE IS UNIQUE TO TagPlayer
 		
@@ -62,34 +56,17 @@ public class TagPlayer {
 		
 	}
 
-	public void drawOn(Graphics2D g) {
-
-		//avoid having to untranslate by mutating a copy of the graphics content
-		g = (Graphics2D)g.create();
-		g.setColor(this.color);
-		g.translate(centerX-radius, centerY-radius);
-		g.fillOval(0, 0, radius*2, radius*2);	
-	}
 
 	public void update(Dimension2D dim) {
-		centerX += velX;
-		centerY += velY;
-		if (centerX > dim.getWidth() || centerX < 0) {
-			centerX = (int)Math.min( Math.max(centerX, 0), dim.getWidth());
-			velX = -velX;
-		}
-		if (centerY > dim.getHeight() || centerY < 0) {
-			velY = -velY;
-			centerY = (int)Math.min( Math.max(centerY, 0), dim.getHeight());
-		}
-		
+		super.update(dim);
+		System.out.println(super.getCenterX()+" "+super.getCenterY());
 		
 		///////START  -   THIS CODE IS UNIQUE TO TagPlayer
 		//This code is UNIQUE to TagPlayer
 		if (isCurrentlyIt) {
-			this.color =  IT_COLOR;
+			super.setColor(IT_COLOR);
 		} else {
-			this.color =  REGULAR_COLOR;
+			super.setColor(REGULAR_COLOR);
 		}
 		//countdown until legal to be tagged
 		this.tagBackCountDown--;
@@ -98,24 +75,14 @@ public class TagPlayer {
 
 	}
 	
-	/**
-	 * Determine if two TagPlayers collided with each other.
-	 */
-	public boolean overlapsWith(TagPlayer other) {
-		int xDiff =  centerX - other.centerX;
-		int yDiff =  centerY - other.centerY;
-		double distance = Math.sqrt(  xDiff*xDiff + yDiff * yDiff );
-		return this.radius + other.radius >= distance;
-	}
+
 	
 	/**
 	 *  Move in opposite direction of collision with other TagPlayer.
 	 *  Also do checks to see if someone got tagged
 	 */
 	public void bounce(TagPlayer other) {
-		this.velX = this.centerX - other.centerX;
-		this.velY = this.centerY - other.centerY;
-		normalizeVelocity();
+		super.bounce(other);
 		
 		
 		///////START  -   THIS CODE IS UNIQUE TO TagPlayer
@@ -123,19 +90,7 @@ public class TagPlayer {
 		checkIfTagged(other);
 		///////END  -   THIS CODE IS UNIQUE TO TagPlayer
 	}
-	
-	// Make sure that velocity remains fixed and non-zero
-	public void normalizeVelocity() {
-		//move down, right if velocity is set to zero
-		if (this.velX == 0 && this.velY == 0) {
-			this.velX = 1;
-			this.velY = 1;
-		}
-		//normalize vector
-		double vectorLength = Math.sqrt(velX*velX + velY*velY);
-		this.velX = (int)(this.velX / vectorLength * moveSpeed * 2);
-		this.velY = (int)(this.velY / vectorLength * moveSpeed * 2);
-	}
+
 
 	/**
 	 *  THIS CODE IS UNIQUE TO TagPlayer

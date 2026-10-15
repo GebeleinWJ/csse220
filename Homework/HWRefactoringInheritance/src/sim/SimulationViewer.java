@@ -86,6 +86,16 @@ public class SimulationViewer {
 				simulationComponent.addParticles(  (Integer)addNumberSelector.getSelectedItem()  );
 			} });
 		buttonPanel.add( addParticles );
+
+		//Button for adding ChargedParticles to a simulation
+		JButton addChargedParticles = new JButton("Add Charged Particles");
+		addChargedParticles.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//passes in the number from the dropdown list
+				simulationComponent.addChargedParticles(  (Integer)addNumberSelector.getSelectedItem()  );
+			} });
+		buttonPanel.add( addChargedParticles );
 		
 		//Button for adding TagPlayers to simulation (includes 1 "it" player)
 		JButton addTagPlayers = new JButton("Add TagPlayers");
@@ -96,6 +106,15 @@ public class SimulationViewer {
 				simulationComponent.addTagPlayers( (Integer)addNumberSelector.getSelectedItem() );
 			} });
 		buttonPanel.add( addTagPlayers );
+		JButton addPerson = new JButton("Add Pandemic");
+		addPerson.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//passes in the number from the dropdown list
+				simulationComponent.addPerson( (Integer)addNumberSelector.getSelectedItem() );
+
+			} });
+		buttonPanel.add( addPerson );
 		
 		//////////////////////////////////////////////
 		//YOU DO NOT HAVE TO MODIFY CODE ABOVE HERE //

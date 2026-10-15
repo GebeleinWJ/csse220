@@ -22,8 +22,7 @@ import java.awt.geom.Dimension2D;
  * @author YOUR_NAME
  *
  */
-public class Person {
-	
+public class Person extends SimulationObject{
 	public static final int PERSON_RADIUS = 10;
 	public static final int PERSON_SPEED = 5;
 	
@@ -33,44 +32,65 @@ public class Person {
 	public static final Color HEALTHY_COLOR = new Color(134, 184, 184);
 	public static final Color INFECTED_COLOR = new Color(204, 102, 0);
 	public static final Color RECOVERED_COLOR = new Color(196, 116, 195);
-	
-	
+	private Color color;
+
+	private int infected;//0 for healthy, 1 for infected, 2 for recovered.
+	private int infectedTimer;
+	public Person(int x, int y, int inf) {
+		super(x, y, "Person");
+		this.infected=inf;
+		this.infectedTimer=TIME_TO_RECOVER;
+		super.setColor(HEALTHY_COLOR);
+		super.setRadius(PERSON_RADIUS);
+		super.setMoveSpeed(PERSON_SPEED);
+	}
+
+
 	//TODO: add instance variables
 	
 	//TODO: add constructors
 
+	public void update(Dimension2D dim){
+		super.update(dim);
+		super.normalizeVelocity();
+		if(this.isInfected()&&this.infectedTimer>0){
+			this.infectedTimer-=1;
+			super.setColor(INFECTED_COLOR);;
 
-	public void drawOn(Graphics2D g) {
-		//USE COLOR CONSTANTS to draw people with different statuses
+		}
+		if(this.isInfected()&&this.infectedTimer<=0){
+			this.infected=2;
+			super.setColor(RECOVERED_COLOR);
+		}
 	}
-
-	public void update(Dimension2D dim) {
-		//TODO Update your position
-	}
-	
 	public void bounce(Person other) {
-		//TODO Infect healthy people when they bounce off of infected people
+		super.bounce(other);
+		if(this.isInfected()&&other.isHealthy()){
+			other.infected=1;
+		}
 	}
 
 	public boolean isHealthy() {
 		// TODO return true if this person is healthy.  False if infected or recovered
+		if(this.infected==0) {
+			return true;
+		}
 		return false;
 	}
 
 	public boolean isInfected() {
 		// TODO return true if this person is sick.  False if infected or recovered
+		if(this.infected==1) {
+			return true;
+		}
 		return false;
 	}
 	
 	public boolean isRecovered() {
 		// TODO return true if this person is recovered.  False if infected or healthy
+		if(this.infected==2) {
+			return true;
+		}
 		return false;
 	}
-
-	public boolean overlapsWith(Person other) {
-		// TODO return true if the person is within range of another
-		return false;
-	}
-
-
 }

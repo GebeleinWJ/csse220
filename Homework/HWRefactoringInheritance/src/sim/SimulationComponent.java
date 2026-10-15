@@ -4,9 +4,9 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JComponent;
-import simulationObjects.Particle;
-import simulationObjects.Person;
-import simulationObjects.TagPlayer;
+
+import simulationObjects.*;
+
 /**
  * This class DOES have to be modified in Part 3 and 4.
  * 
@@ -44,6 +44,13 @@ public class SimulationComponent extends JComponent {
 			this.particles.add( new Particle( rand.nextInt( this.getWidth() ), rand.nextInt( this.getHeight() )  )   );
 		}
 	}
+
+	//Add ChargedParticles to the simulation based on the dropdown number selected
+	public void addChargedParticles(int count) {
+		for (int i=0; i< count; i++) {
+			this.particles.add( new ChargedParticle( rand.nextInt( this.getWidth() ), rand.nextInt( this.getHeight() )  )   );
+		}
+	}
 	
 	//Add TagPlayers to the simulation based on the dropdown number selected
 	public void addTagPlayers(int count ) {
@@ -53,6 +60,14 @@ public class SimulationComponent extends JComponent {
 		//Add at least one Person who is "it"
 		TagPlayer playWhoIsIt = new TagPlayer(rand.nextInt( this.getWidth() ), rand.nextInt( this.getHeight() ), true);
 		this.tagPlayers.add(  playWhoIsIt  );
+	}
+	public void addPerson(int count ) {
+		for (int i=0; i< count; i++) {
+			this.persons.add( new Person( rand.nextInt( this.getWidth() ), rand.nextInt( this.getHeight() ), 0 )   );
+		}
+		//Add at least one Person who is "it"
+		Person playWhoIsIt = new Person(rand.nextInt( this.getWidth() ), rand.nextInt( this.getHeight() ), 1);
+		this.persons.add(playWhoIsIt);
 	}
 	
 	//////////////////////////////////////////////
@@ -115,13 +130,13 @@ public class SimulationComponent extends JComponent {
 		// but you do not need to here.
 		for (TagPlayer t: this.tagPlayers) {
 			t.drawOn(g2);
-		}		
+		}
 		for (Particle p: this.particles) {
 			p.drawOn(g2);
-		}	
+		}
 		for (Person p: this.persons) {
 			p.drawOn(g2);
-		}	
+		}
 		
 	}	
 	
