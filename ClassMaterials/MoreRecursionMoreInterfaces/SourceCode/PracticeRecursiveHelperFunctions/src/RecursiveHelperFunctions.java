@@ -24,7 +24,15 @@ public class RecursiveHelperFunctions {
 	 * @return sum of array
 	 */
 	public static int sumWholeArray(int[] array) {
-		return 0;
+		int total=0;
+		if(array.length==1){
+			return array[0];
+		}
+		else{
+			int[] arr2 = array;
+
+			return array[0];
+		}
 	}
 	
 	
@@ -67,7 +75,29 @@ public class RecursiveHelperFunctions {
 	 * @return true if list is sorted in increasing order
 	 */
 	public static boolean isOrdered(int[] array) {
-		return false;
+		if(temp(0,array)==-2){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public static int temp(int checking, int[] array){
+		if(checking>=array.length-1){
+			return -2;
+		}
+		else if(checking==-1){
+			return -1;
+		}
+		else if(checking==-2){
+			return -2;
+		}
+		else if(array[checking]<array[checking+1]){
+			return temp(checking+1,array);
+		}
+		else{
+			return -1;
+		}
 	}
 	
 	/**
@@ -88,9 +118,28 @@ public class RecursiveHelperFunctions {
 	 * @return true if there is one uppercase character
 	 */
 	public static boolean hasExactlyOneUppercase(String input) {
-		return false;
+		if( numberOfCapitals(input,0).equals("True") ){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
-
+	public static String numberOfCapitals(String input, int number){
+		int temp = number;
+		if(input.length()==0&&number==1){
+			return"True";
+		}
+		else if(input.length()==0&&number!=1){
+			return"False";
+		}
+		else{
+			if(input.substring(0,1).equals(input.substring(0,1).toUpperCase())){
+				temp++;
+			}
+			return numberOfCapitals(input.substring(1),temp);
+		}
+	}
 	/**
 	 * Returns the length of the longest chain of repeated characters
 	 * 
