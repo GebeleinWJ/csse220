@@ -1,0 +1,36 @@
+Car added 2 passenger(s).
+Car added 2 passenger(s).
+Car added 2 passenger(s).
+Truck added 2 passenger(s).
+Truck added 2 passenger(s).
+Truck added 2 passenger(s).
+Motorcycle added 2 passenger(s).
+Motorcycle added 2 passenger(s).
+Motorcycle added 2 passenger(s).
+Car added 1 passenger(s).
+Car added 1 passenger(s).
+Car added 1 passenger(s).
+Truck added 1 passenger(s).
+Truck added 1 passenger(s).
+Truck added 1 passenger(s).
+This Motorcycle can only have 2 passengers! No action taken.
+This Motorcycle can only have 2 passengers! No action taken.
+This Motorcycle can only have 2 passengers! No action taken.
+This Car can only have 5 passengers! No action taken.
+This Car can only have 5 passengers! No action taken.
+This Car can only have 5 passengers! No action taken.
+Truck added 5 passenger(s).
+Truck added 5 passenger(s).
+Truck added 5 passenger(s).
+This Motorcycle can only have 2 passengers! No action taken.
+This Motorcycle can only have 2 passengers! No action taken.
+This Motorcycle can only have 2 passengers! No action taken.
+Car has 4 wheels, 3 passengers currently, and has traveled 30 miles since last service. This Car has 4 cylinders.
+Car has 4 wheels, 3 passengers currently, and has traveled 30 miles since last service. This Car has 6 cylinders.
+Car has 4 wheels, 3 passengers currently, and has traveled 30 miles since last service. This Car has 8 cylinders.
+Truck has 4 wheels, 8 passengers currently, and has traveled 30 miles since last service. This Truck has 45 square footage in the bed.
+Truck has 4 wheels, 8 passengers currently, and has traveled 30 miles since last service. This Truck has 55 square footage in the bed.
+Truck has 4 wheels, 8 passengers currently, and has traveled 30 miles since last service. This Truck has 60 square footage in the bed.
+Motorcycle has 2 wheels, 2 passengers currently, and has traveled 30 miles since last service. This Motorcycle has 1000 size motor (currently).
+Motorcycle has 2 wheels, 2 passengers currently, and has traveled 30 miles since last service. This Motorcycle has 1200 size motor (currently).
+Motorcycle has 2 wheels, 2 passengers currently, and has traveled 30 miles since last service. This Motorcycle has 1500 size motor (currently).
