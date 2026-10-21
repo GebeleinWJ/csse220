@@ -38,6 +38,9 @@ public class FileBestScore {
 	private int computeTotal(String allScoresString) {
 		String[] allScoresArray = allScoresString.split(",");
 		int total = 0;
+		if(allScoresArray.length>4){
+			throw new IllegalArgumentException("More than four scores detected");
+		}
 		for(String score : allScoresArray) {
 			total += Integer.parseInt(score.trim());
 		} // end for
@@ -55,8 +58,14 @@ public class FileBestScore {
 		while(s1.hasNext()) {
 			String name = s1.next();
 			String allScoresString = s1.nextLine();
-			int total = computeTotal(allScoresString);
-			if(total > bestScore) {
+			int total = 0;
+			try{
+				total = computeTotal(allScoresString);
+			} catch (IllegalArgumentException e) {
+                System.err.println(name + "'s scores were invalid. They have been excluded from the scoring.");
+            }
+
+            if(total > bestScore) {
 				bestScore = total;
 				bestPlayer = name;
 			} // end if
@@ -82,6 +91,17 @@ public class FileBestScore {
 
 	public static void main(String[] args) throws IOException {
 		FileBestScore app = new FileBestScore();
-		app.runApp();
+		for(int i = 0; i<1;) {
+			try {
+				app.runApp();
+				i++;
+			} catch (IOException e) {
+				System.err.println("Invalid file name. Please try again.");
+				System.out.println();
+			} catch(RuntimeException e){
+				System.out.println();
+				System.err.println("No valid score within the file. Choose a different file or alter the current file.");
+			}
+		}
 	} // main
 }
