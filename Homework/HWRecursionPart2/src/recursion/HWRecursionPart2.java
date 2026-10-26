@@ -1,7 +1,6 @@
 package recursion;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Class: HWRecursionPart2
