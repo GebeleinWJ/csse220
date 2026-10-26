@@ -1,5 +1,8 @@
 package recursion;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * Class: HWRecursionPart2
  * @author CSSE Faculty
@@ -39,8 +42,37 @@ public class HWRecursionPart2 {
 	  */
 	
 	public static boolean findIn(int[] input, int[] toFind) {
-		throw new UnsupportedOperationException("TODO: Implement this method");
+		boolean tm=findHelp(input,toFind,0);
+		if(input.length<=toFind.length){
+            return tm;
+		}
+		else{
+			if(tm){
+				if(toFind.length<=1){
+					return true;
+				}
+				return tm&&(findIn(Arrays.copyOfRange(input,1,input.length),Arrays.copyOfRange(toFind,1,toFind.length)));
+			}
+			else{
+				return (findIn(Arrays.copyOfRange(input,1,input.length),toFind));
+			}
+
+		}
 	} // findIn
+	private static boolean findHelp(int[] in1, int[] in2, int cur){
+		if(cur<=1){
+			System.out.println(cur+" + "+(in1[cur]==in2[cur]));
+            return in1[cur]==in2[cur];
+		}
+		else if(in1[cur]!=in2[cur]){
+			System.out.println(cur+" + "+(in1[cur]==in2[cur]));
+			return false;
+		}
+		else {
+			System.out.println(cur+" + "+(in1[cur-1]==in2[cur-1]));
+            return findHelp(in1, in2, cur - 1);
+        }
+	}
 
 
 	/**
@@ -66,7 +98,16 @@ public class HWRecursionPart2 {
 	 * @return the final balance after compounding for the specified months
 	 */
 	public static double compoundInterest(double principal, double annualRate, int months) {
-		throw new UnsupportedOperationException("TODO: Implement this method");
+		if(months<=0){
+			return principal;
+		}
+		double Balance = principal * (1.0 + (annualRate / 100.0) / 12.0);
+		if(months==1){
+			return Balance;
+		}
+		else{
+			return compoundInterest(Balance,annualRate,months-1);
+		}
 	} // compoundInterest
 
 
@@ -85,9 +126,29 @@ public class HWRecursionPart2 {
 	 * @return true if the string is a near-palindrome, false otherwise
 	 */
 	public static boolean isNearPalindrome(String input) {
-		throw new UnsupportedOperationException("TODO: Implement this method");
+		int checking = palindromeHelp(input);
+		if(checking<=1){
+			return true;
+		}
+		else{
+			return false;
+		}
 	} // isNearPalindrome
-
+	private static int palindromeHelp(String input){
+		int output = 0;
+		if(input.isEmpty()){
+			return 0;
+		}
+		else if(!input.substring(0, 1).equals(input.substring(input.length() - 1))){
+			output++;
+		}
+		if(input.length()>2){
+			return output+palindromeHelp(input.substring(1,input.length()-1));
+		}
+		else{
+			return output;
+		}
+	}
 
 	/**
 	 * For this problem, you are given an array of integers.  You are to use 
@@ -123,8 +184,38 @@ public class HWRecursionPart2 {
 	 * @return the highest possible sum of any subsequence
 	 */
 	public static int highestSubsequenceSum(int[] input) {
-		throw new UnsupportedOperationException("TODO: Implement this method");
+		int maxTotal=Integer.MIN_VALUE;
+		int currentTotal=sumArray(input,0);
+		if(maxTotal<=currentTotal){
+			maxTotal=currentTotal;
+		}
+		if(input.length>1){
+			int[] newInput = Arrays.copyOfRange(input,1,input.length);
+			int newMax = highestSubsequenceSum(newInput);
+			if(maxTotal<=newMax){
+				maxTotal=newMax;
+			}
+		}
+		if(input.length>1){
+			int[] newInput = Arrays.copyOfRange(input,0,input.length-1);
+			int newMax = highestSubsequenceSum(newInput);
+			if(maxTotal<=newMax){
+				maxTotal=newMax;
+			}
+		}
+		return maxTotal;
+
 	} // highestSubsequenceSum
+
+	private static int sumArray(int[] input, int current){
+		if(input.length<=current){
+			return 0;
+		}
+		else{
+			int temp = current+1;
+			return input[current]+sumArray(input,temp);
+		}
+	}
 
 	
 } // end HWRecursionPart2
